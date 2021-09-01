@@ -23,14 +23,20 @@ public class Streaming {
         
         cancion1.setArtista("Shakira");
         cancion1.setTitulo("waka waka");
-        cancion1.setSegundos(234);
+        cancion1.setSegundos(634);
         cancion1.imprimir();
         
         String aux = cancion1.getArtista();
         System.out.println("El artista es: " + aux);
         System.out.println("El artista es: " + cancion1.getArtista());
         
+        Cancion cancion2 = new Cancion("el gato volar", "Cantante", 180, true, false);
+        cancion2.setArtista("El Chombo");
         
+        cancion2.imprimir();
+        
+        System.out.println("cancion 1: "  + cancion1.tipoCancion());
+        System.out.println("cancion 2: "  + cancion2.tipoCancion());
         
     }
     
