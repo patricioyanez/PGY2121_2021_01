@@ -77,11 +77,33 @@ public class Cancion {
     }
     
     // metodos customer
-
-    @Override
-    public String toString() {
-        return "Cancion{" + "titulo=" + titulo + ", artista=" + artista + ", segundos=" + segundos + ", esFavorita=" + esFavorita + ", estaDescargada=" + estaDescargada + '}';
+    
+    public int adelantar(int segundosActual, int segundoAdelantar)
+    {
+        //segundosActual = segundosActual + segundoAdelantar;
+        segundosActual += segundoAdelantar;
+        return segundosActual;
+    }
+  
+    public void imprimir()
+    {
+        System.out.println("Datos de la canción");
+        System.out.println("Titulo  : " + this.titulo);
+        //System.out.println("Titulo: " + this.getTitulo());
+        System.out.println("Artista : " + this.getArtista());
+        int minutos = (int)(this.segundos / 60);
+        int segundos= this.segundos - (minutos * 60);
+        System.out.println("Duración: " + minutos + ":" + segundos);
+        System.out.println("Es favorita: " + this.esFavorita);
+        System.out.println("Esta descargada: " + this.estaDescargada);
     }
     
+    public String tipoCancion()
+    {        
+        if(this.segundos >= 300)
+            return "Canción extensa";
+        else 
+            return "Canción corta";
+    }
     
 }
