@@ -53,6 +53,35 @@ public class Sentencias {
         
         
         
+        int grado = 8;
+        String curso = "";        
+        switch(grado)
+        {
+            case 1:
+                curso= "Primero básico";
+                break;                
+            case 2:
+                curso= "Segundo básico";
+                break;
+            case 3:
+                curso= "Tercero básico";
+                break;                
+            case 4:
+                curso= "Cuarto básico";
+                break;                
+            case 5:
+                curso= "Quinto básico";
+                break;                
+            case 6:
+                curso= "Sexto básico";
+                break;
+            default:
+                curso= "No especificado";
+                break;
+        }
+        System.out.println("Curso es: " + curso);
+        
+        
         
     }
     
