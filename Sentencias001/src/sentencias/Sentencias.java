@@ -1,14 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package sentencias;
 
-/**
- *
- * @author patri
- */
+package sentencias;
+import java.util.Scanner; // permite leer el teclado
+
+
 public class Sentencias {
 
     /**
@@ -18,11 +12,14 @@ public class Sentencias {
         // TODO code application logic here
         int nota;
         nota = 55;
+        
         int nota1 = 40;
         
         
         if(nota == 60)
             System.out.println("Ud. Aprobó");
+ 
+            
         
         if(nota >= 60)
         {
@@ -53,7 +50,7 @@ public class Sentencias {
         
         
         
-        int grado = 8;
+        int grado = 3;
         String curso = "";        
         switch(grado)
         {
@@ -82,6 +79,44 @@ public class Sentencias {
         System.out.println("Curso es: " + curso);
         
         
+        //** while for **//
+        int numero = 1;
+        while(numero <= 10)
+        {
+            System.out.println("nro: " + ++numero);
+        }
+        
+        while(numero != 0)
+        {
+            System.out.println("nro opuesto: " + --numero);
+        }
+        
+        for(int i = 0; i <= 10; i++)
+        {
+            System.out.println("for: " + i);
+        }
+
+        int index = 0;
+        for(; index < 5;)
+        {
+            System.out.println("for 2: " + index++);
+        }
+        System.out.println("variable: " + index);
+        
+        
+        /** menu **/
+        String opcion = "";
+        // crea el objeto que permite leer el teclado
+        Scanner teclado = new Scanner(System.in);
+        while(!opcion.equals("5"))  
+        {
+            System.out.println("|**** M e n u *****|");
+            System.out.println("1.- Ingreso");
+            System.out.println("2.- Modificar");
+            System.out.println("3.- Eliminar");
+            System.out.println("4.- Listar");
+            System.out.println("5.- Salir");
+        }
         
     }
     
