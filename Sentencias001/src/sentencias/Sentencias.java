@@ -116,6 +116,8 @@ public class Sentencias {
             System.out.println("3.- Eliminar");
             System.out.println("4.- Listar");
             System.out.println("5.- Salir");
+            System.out.print("Ingrese opción: ");
+            opcion = teclado.next();
         }
         
     }
