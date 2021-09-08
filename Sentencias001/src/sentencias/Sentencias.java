@@ -10,7 +10,8 @@ public class Sentencias {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        int nota;
+        // crear variables:
+        int nota;                  
         nota = 55;
         
         int nota1 = 40;
@@ -50,7 +51,7 @@ public class Sentencias {
         
         
         
-        int grado = 3;
+        int grado = 30;
         String curso = "";        
         switch(grado)
         {
@@ -118,8 +119,36 @@ public class Sentencias {
             System.out.println("5.- Salir");
             System.out.print("Ingrese opción: ");
             opcion = teclado.next();
+            
+            /* imprimir que opcion seleccionó el usuario */
+            if (opcion.equals("1"))
+            {
+                System.out.println("Usted eligió la opción 'Ingreso' ");
+            }
+            else if (opcion.equals("2"))
+            {
+                System.out.println("Usted eligió la opción 'Modificar' ");
+            }
+            else if (opcion.equals("3"))
+            {
+                System.out.println("Usted eligió la opción 'Eliminar' ");
+            }
+            else if (opcion.equals("4"))
+            {
+                System.out.println("Usted eligió la opción 'Listar' ");
+            }
+            else if (opcion.equals("5"))
+            {
+                System.out.println("Usted eligió la opcion 'Salir' ");
+            }
+            else
+            {
+                System.out.println("Seleccione una opción válida.");
+            }            
         }
         
+        
+        // ejercicio y clase String
     }
     
 }
