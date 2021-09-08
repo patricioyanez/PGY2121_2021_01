@@ -149,6 +149,28 @@ public class Sentencias {
         
         
         // ejercicio y clase String
+        int numeroDeEntradas = 0;
+        int edad    = 0;
+        int ninios  = 0; 
+        int adultos = 0;
+
+        Scanner input = new Scanner (System.in);
+        System.out.print("Ingrese el numero de entradas: ");
+        numeroDeEntradas = input.nextInt();
+
+        for (int i = 0; i<numeroDeEntradas; i++)
+        {
+            System.out.println("Ingrese su edad: ");
+            edad = input.nextInt();
+
+            if (edad <= 12)
+                ninios++;
+            else
+                adultos++;
+        }
+
+        System.out.println("Los ninios totales son: "+ ninios);
+        System.out.println("Los adultos totales son: "+ adultos);
     }
     
 }
