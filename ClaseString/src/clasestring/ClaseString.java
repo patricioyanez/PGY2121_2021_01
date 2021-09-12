@@ -21,6 +21,8 @@ public class ClaseString {
         System.out.println("14.100.200-k".replace(".", "").replace("-", "") ); // 14100200k
         System.out.println("mayuscula".toUpperCase());
         System.out.println("MINUSCULA".toLowerCase());
+        
+        
     }
     
 }
