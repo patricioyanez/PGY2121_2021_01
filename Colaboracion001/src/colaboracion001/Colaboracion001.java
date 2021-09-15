@@ -1,7 +1,7 @@
 package colaboracion001;
 
 import java.util.Date;
-
+import java.text.SimpleDateFormat;  
 public class Colaboracion001 {
 
     public static void main(String[] args) {
@@ -25,14 +25,40 @@ public class Colaboracion001 {
         
         
         Persona p3 = new Persona(300, "Esteban", "Colina");
+
+        Date date = new Date();  
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");  
+        String strDate= formatter.format(date);  
+        System.out.println(strDate);          
         
-        
-        e3.setPersona(p3);
-        
+        e3.setPersona(p3);       
         
         System.out.println(e1.toString());
         System.out.println(e2.toString());
         System.out.println(e3.toString());
+        
+        //¿Cuál es el nombre de la persona que compró la entrada 2?
+        System.out.println("\n =============");
+        System.out.print("El nombre de la persona es:" );
+        
+        System.out.println(e2.getPersona().getNombre() );
+        
+        // ¿Cual es la comuna de la persona que compro la entrada 3?
+        
+        System.out.print("Comuna del cliente entreda 3:" );        
+        System.out.println(e3.getPersona().getComuna() );
+        
+        
+        // obtener todos los datos de la persona que compró la entrada 1?
+        System.out.print("Datos de la persona entrada 1000:" );        
+        System.out.println("\n" + e3.getPersona() );
+        System.out.println("\n" + e3.getPersona().toString() );
+        
+        if(e1==e1)
+            System.out.println("true");
+        
+        if(e1!=e2)
+            System.out.println("false");
         
     }
     
