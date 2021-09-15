@@ -53,6 +53,15 @@ public class Persona {
                 ", comuna=" + comuna;
     }
     
+    public int codigoPostal()
+    {        
+        return 1;
+    }
     
+    public String digitoVerificador()
+    {
+        // rutina que calcula el dv
+        return "K";
+    }
     
 }
