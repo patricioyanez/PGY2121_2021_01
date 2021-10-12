@@ -68,6 +68,8 @@ public class Scootin001 {
         System.out.println("*************** L I S T A D O ***********************************");
         // listar todos los empleados
         scootin.listar();
+        // HERENCIA
+        //3_1_1
     }
     
 }
