@@ -40,7 +40,7 @@ public class Puesto {
     }
 
     @Override
-    public String toString() {
+    public String toString() { // imprimir
         return "Puesto: \n" + 
                 "codigo=" + codigo + 
                 ", nombre=" + nombre;

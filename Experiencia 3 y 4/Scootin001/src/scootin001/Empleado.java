@@ -12,7 +12,7 @@ public class Empleado {
     public Empleado() {
         this.rut = "";
         this.nombreCompleto = "";
-        this.genero = "";
+        this.genero = ""; // ' '
         this.anioDeServicio = 0;
         this.edad = 0;
         this.puesto = new Puesto(); // null
