@@ -67,7 +67,7 @@ public class ListaReproduccion {
                 lista2.listar();
             }
         }
-        
+        System.out.println("chao mundo");
         
     }
     

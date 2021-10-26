@@ -22,6 +22,9 @@ public class Lista {
     
     public boolean agregar(Cancion cancion)
     {
+        // validar a información
+        // no se repita la cancion
+        // el genero
         return canciones.add(cancion);
     }
     
