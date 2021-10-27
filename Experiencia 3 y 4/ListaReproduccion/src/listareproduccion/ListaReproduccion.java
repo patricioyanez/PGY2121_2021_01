@@ -31,6 +31,8 @@ public class ListaReproduccion {
         Cancion cancion4 = new Cancion("La voz de los 80", 400, true, false, "Rock", artista2);
         Cancion cancion5 = new Cancion("Las industrias", 400, true, false, "Rock", artista2);
         Cancion cancion6 = new Cancion("El baile de los qe sobran", 400, true, false, "Rock", artista2);
+        
+        
         // crea las 2 listas para las canciones    
         Lista lista1 = new Lista();
         Lista lista2 = new Lista();

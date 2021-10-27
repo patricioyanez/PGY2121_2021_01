@@ -95,6 +95,6 @@ public class Cancion {
     }
     
     
-    
+    protected void hola(){}
     
 }
