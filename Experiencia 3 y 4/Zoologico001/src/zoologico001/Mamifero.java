@@ -4,25 +4,25 @@ package zoologico001;
 
 public class Mamifero extends Animal{
     private int diasGestacion;
-    private int cantidaUbre;
+    private int cantidadUbre;
 
 
     public Mamifero() {
         this.diasGestacion = 0;
-        this.cantidaUbre = 0;
+        this.cantidadUbre = 0;
     }
     
     public Mamifero(int diasGestacion, int cantidaUbre) {
         this.diasGestacion = diasGestacion;
-        this.cantidaUbre = cantidaUbre;
+        this.cantidadUbre = cantidaUbre;
     }
 
-    public int getCantidaUbre() {
-        return cantidaUbre;
+    public int getCantidadUbre() {
+        return cantidadUbre;
     }
 
-    public void setCantidaUbre(int cantidaUbre) {
-        this.cantidaUbre = cantidaUbre;
+    public void setCantidadUbre(int cantidaUbre) {
+        this.cantidadUbre = cantidaUbre;
     }
 
     public int getDiasGestacion() {
@@ -35,13 +35,18 @@ public class Mamifero extends Animal{
 
     @Override
     public String toString() {        
-        return super.toString() + "Mamifero:\n{" + "diasGestacion=" + diasGestacion + ", cantidaUbre=" + cantidaUbre;
+        return super.toString() + "Mamifero:\n{" + "diasGestacion=" + diasGestacion + ", cantidadUbre=" + cantidadUbre;
     }
 
     @Override
     public void comer() {
-        super.comer();
+       // super.comer();
         System.out.println("El mamifero come :-)");
+    }
+    
+    public void comer(String nombreMamifero)
+    {
+        System.out.println("El " + nombreMamifero +" come :-)");
     }
     
     
@@ -49,15 +54,15 @@ public class Mamifero extends Animal{
     
     public void beber()
     {
-        System.out.println("El mamifero bebe agua");
+        System.out.println("El o la " + getNombre() + " bebe agua");
     }
     public void beber(String liquido)
     {
-        System.out.println("El mamifero bebe " + liquido);
+        System.out.println("El o la " + getNombre() + " bebe " + liquido);
     }
     public void beber(String liquido, int cantidadCC)// centimetros cubicos
     {
-        System.out.println("El mamifero bebe " + cantidadCC + "CC de " + liquido);
+        System.out.println("El o la " + getNombre() + " bebe " + cantidadCC + "CC de " + liquido);
     }
     
 }

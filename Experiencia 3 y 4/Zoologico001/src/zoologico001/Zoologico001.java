@@ -21,9 +21,13 @@ public class Zoologico001 {
         
         Mamifero perro = new Mamifero(90, 8);
         perro.comer(); // uso de sobreEscritura (cambia a otro mensaje)
+        perro.comer("Perro");
         
         Mamifero persona1 = new Mamifero(270, 2);
         Mamifero persona2 = new Mamifero(270, 2);
+        persona1.setNombre("Persona");
+        persona2.setNombre("Persona");
+        
         
         persona1.beber();
         persona2.beber("Cerveza");
@@ -33,5 +37,23 @@ public class Zoologico001 {
         perro.setNombreCientifico("cannis lupus familiaris");
         perro.setOjos(2);
         System.out.println(perro.toString());
+
+        //  clase abstracta no se puede instanciar
+        // Cuidados c = new Cuidados();
+        
+        // clase final no se puede heredar pero 
+        // si instancia
+        
+        Venta venta1 = new Venta();
+        String palabra = "fasdfas";
+        
+        
+        System.out.println("Iva :" + IOperaciones.IVA);
+        System.out.println("Iva :" + IOperaciones.IVA);
+        System.out.println("Iva :" + IOperaciones.IVA);
+        System.out.println("Iva :" + IOperaciones.IVA);
+        System.out.println("Iva :" + IOperaciones.IVA);
+        System.out.println("Iva :" + IOperaciones.IVA);
+        System.out.println("Iva :" + IOperaciones.IVA);
     }    
 }
