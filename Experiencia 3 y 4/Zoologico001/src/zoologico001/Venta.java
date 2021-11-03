@@ -32,4 +32,10 @@ public final class Venta implements IOperaciones{
     public int leer() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    @Override
+    public int eliminar() {
+        /// elimina el dato de una BDD
+        return 1;
+    }
 }

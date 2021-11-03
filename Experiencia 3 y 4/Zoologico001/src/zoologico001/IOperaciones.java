@@ -15,7 +15,11 @@ public interface IOperaciones {
     public int modificar();
     public int listar();
     public int leer();
+    public int eliminar();
     
     public int IVA = 19;
+    public int C = 300000;
+    public int C2= 297654;
+    public double PI = 3.1415;
     
 }

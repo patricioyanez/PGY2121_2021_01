@@ -13,8 +13,15 @@ public class Veterinaria extends Cuidados{
 
     @Override
     public void vacunar() {
-        System.out.println("Vacunar");
+        System.out.println("Vacunado con jeringa normal");
     }
+
+    @Override
+    public Boolean darVitaminas(int cantidadPastillas) {
+        System.out.println("se le dio " + cantidadPastillas + " de vitaminas.");
+        return true;
+    }
+
 
 
     
