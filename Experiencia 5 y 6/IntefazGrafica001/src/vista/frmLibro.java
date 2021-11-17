@@ -5,12 +5,21 @@
  */
 package vista;
 
+import controlador.Registro;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import modelo.Libro;
+
 /**
  *
  * @author patri
  */
 public class frmLibro extends javax.swing.JFrame {
-
+    Libro libro = new Libro();
     /**
      * Creates new form frmLibro
      */
@@ -39,7 +48,7 @@ public class frmLibro extends javax.swing.JFrame {
         txtDia = new javax.swing.JTextField();
         txtMes = new javax.swing.JTextField();
         txtAnio = new javax.swing.JTextField();
-        txtrPrecio = new javax.swing.JTextField();
+        txtPrecio = new javax.swing.JTextField();
         rdoSi = new javax.swing.JRadioButton();
         rdoNo = new javax.swing.JRadioButton();
         chkDisponible = new javax.swing.JCheckBox();
@@ -58,14 +67,24 @@ public class frmLibro extends javax.swing.JFrame {
         lblTitulo.setForeground(new java.awt.Color(0, 0, 255));
         lblTitulo.setText("Ingreso de Libros");
 
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 0, 255));
         jLabel2.setText("Titulo");
 
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(0, 0, 255));
         jLabel3.setText("Autor");
 
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(0, 0, 255));
         jLabel4.setText("Publicación");
 
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(0, 0, 255));
         jLabel5.setText("Precio");
 
+        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(0, 0, 255));
         jLabel6.setText("Disponible");
 
         grupoDisponible.add(rdoSi);
@@ -84,6 +103,11 @@ public class frmLibro extends javax.swing.JFrame {
         });
 
         btnGuardar.setText("Guardar");
+        btnGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardarActionPerformed(evt);
+            }
+        });
 
         btnListar.setText("Listar");
 
@@ -93,15 +117,20 @@ public class frmLibro extends javax.swing.JFrame {
 
         grilla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "idLibro", "Titulo", "Autor", "Publicación", "Precio", "Disponible"
             }
-        ));
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Boolean.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(grilla);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -133,7 +162,7 @@ public class frmLibro extends javax.swing.JFrame {
                                             .addComponent(txtAutor, javax.swing.GroupLayout.DEFAULT_SIZE, 280, Short.MAX_VALUE)
                                             .addGroup(layout.createSequentialGroup()
                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                                    .addComponent(txtrPrecio, javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(txtPrecio, javax.swing.GroupLayout.Alignment.LEADING)
                                                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                                         .addComponent(txtDia, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                         .addGap(18, 18, 18)
@@ -190,7 +219,7 @@ public class frmLibro extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(txtrPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
@@ -213,7 +242,98 @@ public class frmLibro extends javax.swing.JFrame {
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
         // TODO add your handling code here:
+        txtTitulo.setText("");
+        txtAutor.setText("");
+        txtDia.setText("");
+        txtMes.setText("");
+        txtAnio.setText("");
+        txtPrecio.setText("");
+        
+        //rdoNo.setSelected(true);        
+        // para limpiar todos los radios o rdo
+        grupoDisponible.clearSelection();  
+        libro.limpiar();
+        txtTitulo.requestFocus();
     }//GEN-LAST:event_btnLimpiarActionPerformed
+
+    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
+        // TODO add your handling code here:
+        // validar
+        if(txtTitulo.getText().trim().length() == 0)
+        {
+            JOptionPane.showMessageDialog(this, "Debe especificar el Titulo del libro");
+            txtTitulo.requestFocus();
+        }
+        else if(txtAutor.getText().trim().length() == 0)
+        {
+            JOptionPane.showMessageDialog(this, "Debe especificar el Autor del libro");
+            txtAutor.requestFocus();
+        }
+        else if(txtDia.getText().trim().length() == 0)
+        {
+            JOptionPane.showMessageDialog(this, "Debe especificar el Día de la publicación");
+            txtDia.requestFocus();
+        }
+        else if(txtMes.getText().trim().length() == 0)
+        {
+            JOptionPane.showMessageDialog(this, "Debe especificar el Mes de la publicación");
+            txtMes.requestFocus();
+        }
+        else if(txtAnio.getText().trim().length() == 0)
+        {
+            JOptionPane.showMessageDialog(this, "Debe especificar el Año de la publicación");
+            txtAnio.requestFocus();
+        }
+        else if(txtPrecio.getText().trim().length() == 0)
+        {
+            JOptionPane.showMessageDialog(this, "Debe especificar el precio del libro");    
+            txtPrecio.requestFocus();
+        }
+        else if(!rdoSi.isSelected() && !rdoNo.isSelected())
+        {
+            JOptionPane.showMessageDialog(this, "Debe especificar si esta disponible el libro");
+        }
+        else
+        {
+            // traspasar los datos del formulario (txt,rdo, etc.)
+            // al objeto libro
+            libro.setIdLibro(0);
+            libro.setTitulo(txtTitulo.getText().trim().toUpperCase());
+            libro.setAutor(txtAutor.getText().trim().toUpperCase());
+            
+            //formatear una fecha
+            Date fecha;
+            SimpleDateFormat formatoFecha = new SimpleDateFormat("mm/dd/yyyy");
+            
+            String f = txtMes.getText() + "/" + txtDia.getText() + "/" + txtAnio.getText();
+            
+            try {
+                fecha = formatoFecha.parse(f);
+                libro.setPublicacion(fecha);
+            } catch (ParseException ex) {
+                Logger.getLogger(frmLibro.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            // convertir precio a un numero
+            int precio = Integer.parseInt(txtPrecio.getText());
+            libro.setPrecio(precio);
+            
+            libro.setDisponible(rdoSi.isSelected());
+            
+            //JOptionPane.showMessageDialog(this, libro);
+            Registro registro = new Registro();
+            Boolean res = registro.agregar(libro);
+            
+            if(res)
+            {
+                JOptionPane.showMessageDialog(this, "Datos guardados");
+                btnLimpiar.doClick(); // simula un clic al botón
+            }
+            else
+                JOptionPane.showMessageDialog(this, "Datos NO guardados");
+                
+        }
+        
+    }//GEN-LAST:event_btnGuardarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -272,7 +392,7 @@ public class frmLibro extends javax.swing.JFrame {
     private javax.swing.JTextField txtAutor;
     private javax.swing.JTextField txtDia;
     private javax.swing.JTextField txtMes;
+    private javax.swing.JTextField txtPrecio;
     private javax.swing.JTextField txtTitulo;
-    private javax.swing.JTextField txtrPrecio;
     // End of variables declaration//GEN-END:variables
 }
