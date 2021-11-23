@@ -9,9 +9,11 @@ import controlador.Registro;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 import modelo.Libro;
 
 /**
@@ -110,6 +112,11 @@ public class frmLibro extends javax.swing.JFrame {
         });
 
         btnListar.setText("Listar");
+        btnListar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnListarActionPerformed(evt);
+            }
+        });
 
         btnModificar.setText("Modificar");
 
@@ -129,6 +136,11 @@ public class frmLibro extends javax.swing.JFrame {
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
+            }
+        });
+        grilla.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                grillaMouseClicked(evt);
             }
         });
         jScrollPane1.setViewportView(grilla);
@@ -334,6 +346,43 @@ public class frmLibro extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_btnGuardarActionPerformed
+
+    private void btnListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarActionPerformed
+        // TODO add your handling code here:
+        DefaultTableModel modelo = (DefaultTableModel) grilla.getModel();
+        modelo.setRowCount(0);
+        
+        // invocar el metodo buscarTodos
+        Registro registro = new Registro();
+        List<Libro> lista = registro.buscarTodos();
+        
+        for(Libro aux: lista)
+        {
+            modelo.addRow(new Object[]{
+                aux.getIdLibro(),
+                aux.getTitulo(),
+                aux.getAutor(),
+                aux.getPublicacion(),
+                aux.getPrecio(),
+                aux.isDisponible()
+            });
+            
+        }
+       
+        
+        
+    }//GEN-LAST:event_btnListarActionPerformed
+
+    private void grillaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_grillaMouseClicked
+        // TODO add your handling code here:
+        int row = grilla.rowAtPoint(evt.getPoint());
+        
+        txtTitulo.setText(grilla.getValueAt(row, 1).toString() );
+        
+        // completar el formulario con el resto de los datos de la fila 
+        // clickeada por el usuario. (parse... substring)
+        
+    }//GEN-LAST:event_grillaMouseClicked
 
     /**
      * @param args the command line arguments
