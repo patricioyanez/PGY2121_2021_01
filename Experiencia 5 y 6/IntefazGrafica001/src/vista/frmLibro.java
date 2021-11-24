@@ -20,12 +20,12 @@ import modelo.Libro;
  *
  * @author patri
  */
-public class frmLibro extends javax.swing.JFrame {
+public class FrmLibro extends javax.swing.JFrame {
     Libro libro = new Libro();
     /**
      * Creates new form frmLibro
      */
-    public frmLibro() {
+    public FrmLibro() {
         initComponents();
     }
 
@@ -62,7 +62,7 @@ public class frmLibro extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         grilla = new javax.swing.JTable();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Ingreso de Libros");
 
         lblTitulo.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
@@ -119,8 +119,18 @@ public class frmLibro extends javax.swing.JFrame {
         });
 
         btnModificar.setText("Modificar");
+        btnModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModificarActionPerformed(evt);
+            }
+        });
 
         btnEliminar.setText("Eliminar");
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
 
         grilla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -202,7 +212,7 @@ public class frmLibro extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
 
         layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnEliminar, btnGuardar, btnLimpiar, btnListar, btnModificar});
@@ -323,7 +333,7 @@ public class frmLibro extends javax.swing.JFrame {
                 fecha = formatoFecha.parse(f);
                 libro.setPublicacion(fecha);
             } catch (ParseException ex) {
-                Logger.getLogger(frmLibro.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(FrmLibro.class.getName()).log(Level.SEVERE, null, ex);
             }
             // convertir precio a un numero
             int precio = Integer.parseInt(txtPrecio.getText());
@@ -377,47 +387,135 @@ public class frmLibro extends javax.swing.JFrame {
         // TODO add your handling code here:
         int row = grilla.rowAtPoint(evt.getPoint());
         
+        // obtiene el id como string y ser convierte en un numero (int) y es entregado al obj libro
+        int id = Integer.parseInt(grilla.getValueAt(row, 0).toString());
+        libro.setIdLibro(id);
+        
         txtTitulo.setText(grilla.getValueAt(row, 1).toString() );
+        txtAutor.setText(grilla.getValueAt(row, 2).toString() );
+        
+        //  System.out.println("" + grilla.getValueAt(row, 3).toString() );
+        
+        String fecha = grilla.getValueAt(row, 3).toString();
+        txtDia.setText(fecha.substring(8));
+        txtMes.setText(fecha.substring(5,7));
+        txtAnio.setText(fecha.substring(0,4));
+        
+        txtPrecio.setText(grilla.getValueAt(row, 4).toString());
+        
+        if(grilla.getValueAt(row, 5).toString().equals("true"))
+            rdoSi.setSelected(true);
+        else
+            rdoNo.setSelected(true);
         
         // completar el formulario con el resto de los datos de la fila 
         // clickeada por el usuario. (parse... substring)
         
     }//GEN-LAST:event_grillaMouseClicked
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(frmLibro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(frmLibro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(frmLibro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(frmLibro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
+        // TODO add your handling code here:
+        if(libro.getIdLibro() == 0)
+        {
+            JOptionPane.showMessageDialog(this, "Debe seleccionar un libro para modificar");
+            txtTitulo.requestFocus();
         }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new frmLibro().setVisible(true);
+        else if(txtTitulo.getText().trim().length() == 0)
+        {
+            JOptionPane.showMessageDialog(this, "Debe especificar el Titulo del libro");
+            txtTitulo.requestFocus();
+        }
+        else if(txtAutor.getText().trim().length() == 0)
+        {
+            JOptionPane.showMessageDialog(this, "Debe especificar el Autor del libro");
+            txtAutor.requestFocus();
+        }
+        else if(txtDia.getText().trim().length() == 0)
+        {
+            JOptionPane.showMessageDialog(this, "Debe especificar el Día de la publicación");
+            txtDia.requestFocus();
+        }
+        else if(txtMes.getText().trim().length() == 0)
+        {
+            JOptionPane.showMessageDialog(this, "Debe especificar el Mes de la publicación");
+            txtMes.requestFocus();
+        }
+        else if(txtAnio.getText().trim().length() == 0)
+        {
+            JOptionPane.showMessageDialog(this, "Debe especificar el Año de la publicación");
+            txtAnio.requestFocus();
+        }
+        else if(txtPrecio.getText().trim().length() == 0)
+        {
+            JOptionPane.showMessageDialog(this, "Debe especificar el precio del libro");    
+            txtPrecio.requestFocus();
+        }
+        else if(!rdoSi.isSelected() && !rdoNo.isSelected())
+        {
+            JOptionPane.showMessageDialog(this, "Debe especificar si esta disponible el libro");
+        }
+        else
+        {
+            // traspasar los datos del formulario (txt,rdo, etc.)
+            // al objeto libro
+            // libro.setIdLibro(0); Eliminar porque si vale cero no modificará la fila en la BDD
+            libro.setTitulo(txtTitulo.getText().trim().toUpperCase());
+            libro.setAutor(txtAutor.getText().trim().toUpperCase());
+            
+            //formatear una fecha
+            Date fecha;
+            SimpleDateFormat formatoFecha = new SimpleDateFormat("mm/dd/yyyy");
+            // 
+            String f = txtMes.getText() + "/" + txtDia.getText() + "/" + txtAnio.getText();
+            
+            try {
+                fecha = formatoFecha.parse(f);
+                libro.setPublicacion(fecha);
+            } catch (ParseException ex) {
+                Logger.getLogger(FrmLibro.class.getName()).log(Level.SEVERE, null, ex);
             }
-        });
-    }
+            // convertir precio a un numero
+            int precio = Integer.parseInt(txtPrecio.getText());
+            libro.setPrecio(precio);
+            
+            libro.setDisponible(rdoSi.isSelected());
+            
+            //JOptionPane.showMessageDialog(this, libro);
+            Registro registro = new Registro();
+            Boolean res = registro.actualizar(libro); // invocar el actualizar
+            
+            if(res)
+            {
+                JOptionPane.showMessageDialog(this, "Datos guardados");
+                btnLimpiar.doClick(); // simula un clic al botón
+            }
+            else
+                JOptionPane.showMessageDialog(this, "Datos NO guardados");
+        }     
+    }//GEN-LAST:event_btnModificarActionPerformed
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        // TODO add your handling code here:
+        if(libro.getIdLibro() == 0)
+        {
+            JOptionPane.showMessageDialog(this, "Debe seleccionar un libro para modificar");
+            txtTitulo.requestFocus();
+        }
+        else
+        {
+            Registro registro = new Registro();
+            Boolean res = registro.eliminar(libro.getIdLibro()); // invocar el eliminar y entregar el ID del libro
+
+            if(res)
+            {
+                JOptionPane.showMessageDialog(this, "El libro fue eliminado");
+                btnLimpiar.doClick(); // simula un clic al botón
+            }
+            else
+                JOptionPane.showMessageDialog(this, "El libro No fue eliminado");
+        }
+    }//GEN-LAST:event_btnEliminarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnEliminar;
